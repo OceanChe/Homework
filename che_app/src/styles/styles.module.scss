@@ -1,0 +1,88 @@
+* {
+    text-align: center;
+    background-color: #f9c6d7;
+    color: #9b45b6;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.Tasks {
+    &-theme-dark {
+        background: #3f033f;
+    }
+    
+    &-theme-light {
+        background:#b186af;
+    }
+
+    position: relative;
+    margin: 50px 30% 0px 30%;
+    padding: 0px;
+
+}
+button{
+    background-color: #a86fb9;
+    margin: 30px;
+    padding: 20px 50px;
+    color: #9424aa;
+    font-weight: 600;
+}
+
+
+.ID {
+    &-theme-dark {
+        background: #632d63;
+    }
+    
+    &-theme-light {
+        background: #a86fb9;
+    }
+    color: #ffffff;
+    position: absolute;
+	top: -15px;
+	left:-15px;
+	text-align: center;
+	
+    width: 50px;
+    height: 50px; 
+    border-radius: 100%;
+}
+
+.name {
+    &-theme-dark {
+        background: #3f033f;
+    }
+    
+    &-theme-light {
+        background:#b186af;
+    }
+    
+    padding: 3px 20px;
+    font-size: large;
+}
+
+.description {
+    &-theme-dark {
+        background: #3f033f;
+    }
+    
+    &-theme-light {
+        background:#b186af;
+    }
+    padding: 30px;
+}
+
+h1 {
+    color: #9424aa;
+}
+
+.theme-dark{
+    background: #3f033f;
+}
+
+.theme-light {
+    background:#b186af;
+}
+
+p {
+    background: #c83c72;
+}
