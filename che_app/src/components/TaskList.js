@@ -1,58 +1,29 @@
 import React from "react";
 import {Task} from "./Task.js"
 import {AddTask} from "./TaskAdd.js"
+import normalizeState from "../data/normalize";
+import projects from "../data/data";
+import {Link} from "react-router-dom"
 
-const arr = [
-    {
-      id: 1, 
-      name: 'name1', 
-      description: 'do smth', 
-      completed: true
-    },
-    {
-      id: 2, 
-      name: 'name2', 
-      description: 'do smth', 
-      completed: false
-    },
-    {
-      id: 3, 
-      name: 'name3', 
-      description: 'do smth', 
-      completed: false
-    },
-  
-    {
-      id: 4, 
-      name: 'name4', 
-      description: 'do smth', 
-      completed: true
-    },
-    {
-      id: 5, 
-      name: 'name5', 
-      description: 'do smth', 
-      completed: false
-    },
-    {
-      id: 6, 
-      name: 'name6', 
-      description: 'do smth', 
-      completed: true
-    },
-    {
-      id: 7, 
-      name: 'name7', 
-      description: 'do smth', 
-      completed: true
-    }
-  
-  ]
 
 export class MyTodoList extends React.Component {
-    state = {
-      tasks: arr
+  
+  constructor(props) {
+    super(props);
+    console.log(props)
+    const tmp = normalizeState(projects)
+    if (tmp.projectsById[this.props.match.params.id] == undefined) {
+        window.location.href = '/error'
     }
+    this.projectId = this.props.match.params.id
+    this.data = normalizeState(projects)
+    this.tasks = this.data.projectsById[this.projectId].tasksIds[0]
+    this.state = { tasks: Object.entries(this.data.tasksById).map((key, value) => {
+            if (this.tasks.includes(Number(key[0]))) {
+                return key[1]
+            }
+        }).filter(it => it != undefined)}
+}
 
     changeStatus = (id) => {
         let ind = this.state.tasks.findIndex(it => it.id === id)
@@ -69,15 +40,17 @@ export class MyTodoList extends React.Component {
             tasks: [...currentState.tasks, newTask]
           })
       )
-      }
-        render = () => (
-      <div>
-      <div>
-        {this.state.tasks.map(it => <Task{...it} onChangeStatus={this.changeStatus} />)}
-      </div>
-      <div> <AddTask onAddTask={this.pushTask} /> </div>
+    }
+        render = () => {
+          console.log(this.state, this.tasks)
+          return (
+            <div>
+                <div>
+                    {this.state.tasks.map(it => <Task{...it} onChangeStatus={this.changeStatus} />)}
+                </div>
+            <div> <AddTask onAddTask={this.pushTask} /> </div>
       </div>
     )
-        }
-
+   }
+  }
 export default MyTodoList

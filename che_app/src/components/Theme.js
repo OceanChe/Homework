@@ -15,6 +15,7 @@ export class Theme extends React.Component {
                                onClick={() => this.props.newTheme("light")}/> Light theme
                         <input type="radio" value="dark" checked={this.context === "dark"}
                                onClick={() => this.props.newTheme("dark")}/> Dark theme
+                       <a href="/home">Home</a>
         </div>
     )}
   }
